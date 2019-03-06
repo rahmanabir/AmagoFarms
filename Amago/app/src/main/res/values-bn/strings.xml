@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">হ্যালো</string>
+    <string name="pin_number">"গোপন পিন নম্বর "</string>
+    <string name="mobile_phone_num">"মোবাইল ফোন নম্বর "</string>
+    <string name="title_activity_login">লগইন</string>
+    <string name="action_settings">সেটিং</string>
+    <string name="app_name">আমাগো</string>
+    <string name="signup">সাইন আপ</string>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Amago</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Login</string>
+    <string name="mobile_phone_num">Mobile Phone Number</string>
+    <string name="pin_number">Secret PIN Number</string>
+    <string name="hello">hello</string>
+    <string name="signup">Sign Up</string>
+</resources>
