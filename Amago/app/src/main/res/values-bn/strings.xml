@@ -7,4 +7,20 @@
     <string name="action_settings">সেটিং</string>
     <string name="app_name">আমাগো</string>
     <string name="signup">সাইন আপ</string>
+
+    <string-array name="Genders">
+        <item>-লিঙ্গ-</item>
+        <item>পুরুষ</item>
+        <item>মহিলা</item>
+        <item>ট্রান্স</item>
+        <item>অন্যান্য</item>
+        <item>একটিও নয়</item>
+    </string-array>
+
+    <string name="title_activity_register">"রেজিস্টার "</string>
+    <string name="fullname">"পুরা নাম "</string>
+    <string name="address">"ঠিকানা "</string>
+    <string name="dob">"জন্ম তারিক "</string>
+    <string name="registertitle">নতুন প্রোডিউসার আপনার ব্যক্তিগত তথ্য নিবন্ধন করুন</string>
+    <string name="crednotmatch">লগইন তথ্য ভুল। চেক করুন এবং আবার চেষ্টা করুন</string>
 </resources>

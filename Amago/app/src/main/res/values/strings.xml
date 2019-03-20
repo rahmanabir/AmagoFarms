@@ -6,4 +6,21 @@
     <string name="pin_number">Secret PIN Number</string>
     <string name="hello">hello</string>
     <string name="signup">Sign Up</string>
+    <string name="title_activity_register">Register</string>
+    <string name="fullname">Full Name</string>
+    <string name="address">Address</string>
+    <string name="dob">Date of Birth</string>
+    <string name="registertitle">New Producer please Register with your Personal Info</string>
+    <string name="crednotmatch">Login Details Incorrect. Please check and retry</string>
+    <string name="sell">Sell</string>
+    <string name="newharvest">New Harvest</string>
+
+    <string-array name="Genders">
+        <item>-Gender-</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Trans</item>
+        <item>Other</item>
+        <item>None</item>
+    </string-array>
 </resources>
