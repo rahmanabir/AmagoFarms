@@ -1,0 +1,18 @@
+{
+  "name": "amago",
+  "version": "1.0.0",
+  "description": "Amago Retail Web  Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "Amago_Abir",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
