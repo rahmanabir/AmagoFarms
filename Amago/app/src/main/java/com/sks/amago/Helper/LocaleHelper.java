@@ -1,4 +1,4 @@
-package com.sks.amago.LangHelper;
+package com.sks.amago.Helper;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import java.util.Locale;
 
@@ -72,6 +73,20 @@ public class LocaleHelper {
 
         editor.putString(SELECTED_LANGUAGE, lang);
         editor.apply();
+    }
+
+    public static void changeLocale(Resources resources, String locale){
+        Configuration configuration;
+        configuration = new Configuration(resources.getConfiguration());
+
+        if (locale.equals("bn")) {
+            configuration.locale = new Locale("bn");
+            Log.i("changeLocale","Set to Bangla");
+        }
+        else {
+            configuration.setLocale(Locale.getDefault());
+            Log.i("changeLocale","Set to English");
+        }
     }
 
 

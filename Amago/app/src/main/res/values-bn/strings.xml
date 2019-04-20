@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">হ্যালো</string>
+    <string name="hello">স্বাগত!</string>
     <string name="pin_number">"গোপন পিন নম্বর "</string>
     <string name="mobile_phone_num">"মোবাইল ফোন নম্বর "</string>
     <string name="title_activity_login">লগইন</string>
@@ -17,10 +17,45 @@
         <item>একটিও নয়</item>
     </string-array>
 
+    <string-array name="Produce">
+        <item>আলু</item>
+        <item>পেঁয়াজ</item>
+        <item>টমেটো</item>
+        <item>মরিচ</item>
+        <item>ডাল</item>
+        <item>বাঁধাকপি</item>
+        <item>গাজর</item>
+        <item>আপেল</item>
+        <item>কলা</item>
+        <item>ফুলকপি</item>
+        <item>ভূট্টা</item>
+        <item>আঙ্গুর</item>
+        <item>লেবু</item>
+        <item>তরমুজ</item>
+        <item>মাশরুম</item>
+        <item>চিনাবাদাম</item>
+        <item>কমলা</item>
+        <item>পেঁপে</item>
+        <item>মটর</item>
+        <item>আনারস</item>
+        <item>ডালিম</item>
+        <item>রসুন</item>
+    </string-array>
+
     <string name="title_activity_register">"রেজিস্টার "</string>
     <string name="fullname">"পুরা নাম "</string>
     <string name="address">"ঠিকানা "</string>
     <string name="dob">"জন্ম তারিক "</string>
     <string name="registertitle">নতুন প্রোডিউসার আপনার ব্যক্তিগত তথ্য নিবন্ধন করুন</string>
     <string name="crednotmatch">লগইন তথ্য ভুল। চেক করুন এবং আবার চেষ্টা করুন</string>
+    <string name="sell">বিক্রয়</string>
+    <string name="newharvest">নতুন ফসল</string>
+    <string name="alright">"ঠিকাছে "</string>
+    <string name="whatlang">কোন ভাষা?</string>
+    <string name="lastsale">পূর্ববর্তী বিক্রয়:</string>
+    <string name="lastharvest">পূর্ববর্তী ফসল:</string>
+    <string name="lastsaletext">আলু ৮০kg @ ২৫৳/kg</string>
+    <string name="lastharvesttext">আলু ৫০০kg পেঁয়াজ ১০০kg</string>
+    <string name="rahimmia">রহিম মিয়া খন্দকার</string>
+    <string name="deliverydestination">স্বপ্ন তে ডেলিভার করা হচ্ছে</string>
 </resources>

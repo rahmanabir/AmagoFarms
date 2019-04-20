@@ -1,40 +1,39 @@
 package com.sks.amago;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    TextView textName;
+    SharedPreferences sharedPrefs;
+
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        Paper.init(this);
+//        String language = Paper.book().read("language");
+//        if(language == null)
+//            Paper.book().write("language", "bn");
+//        updateView((String)Paper.book().read("language"));
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        textName = findViewById(R.id.textView_username);
+        sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
+        username = sharedPrefs.getString("amagoFullname", "Rahim Mia Khondokor");
+        textName.setText(username);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.lang_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void GotoHarvest(View view) {
 
-        //noinspection SimplifiableIfStatement
-
-
-        return super.onOptionsItemSelected(item);
     }
 }

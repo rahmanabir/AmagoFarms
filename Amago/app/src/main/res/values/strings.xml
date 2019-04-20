@@ -4,23 +4,57 @@
     <string name="title_activity_login">Login</string>
     <string name="mobile_phone_num">Mobile Phone Number</string>
     <string name="pin_number">Secret PIN Number</string>
-    <string name="hello">hello</string>
+    <string name="hello">Welcome!</string>
     <string name="signup">Sign Up</string>
     <string name="title_activity_register">Register</string>
     <string name="fullname">Full Name</string>
     <string name="address">Address</string>
     <string name="dob">Date of Birth</string>
-    <string name="registertitle">New Producer please Register with your Personal Info</string>
-    <string name="crednotmatch">Login Details Incorrect. Please check and retry</string>
+    <string name="registertitle">New Producer Please Register With Your Personal Info</string>
+    <string name="crednotmatch">Login Details Incorrect. Please Check and Retry</string>
     <string name="sell">Sell</string>
     <string name="newharvest">New Harvest</string>
 
-    <string-array name="Genders">
-        <item>-Gender-</item>
-        <item>Male</item>
-        <item>Female</item>
-        <item>Trans</item>
-        <item>Other</item>
-        <item>None</item>
+    <string-array name="Produce">
+        <item>Potato</item>
+        <item>Onion</item>
+        <item>Tomato</item>
+        <item>Chilli</item>
+        <item>Legume</item>
+        <item>Cabbage</item>
+        <item>Carrot</item>
+        <item>Apple</item>
+        <item>Banana</item>
+        <item>Cauliflower</item>
+        <item>Corn</item>
+        <item>Grape</item>
+        <item>Lemon</item>
+        <item>Watermelon</item>
+        <item>Mushroom</item>
+        <item>Peanut</item>
+        <item>Orange</item>
+        <item>Papaya</item>
+        <item>Peas</item>
+        <item>Pineapple</item>
+        <item>Pomegranate</item>
+        <item>Garlic</item>
     </string-array>
+
+    <string-array name="Genders">
+        <item>-লিঙ্গ-</item>
+        <item>পুরুষ</item>
+        <item>মহিলা</item>
+        <item>ট্রান্স</item>
+        <item>অন্যান্য</item>
+        <item>একটিও নয়</item>
+    </string-array>
+
+    <string name="alright">OK</string>
+    <string name="whatlang">Pick Language</string>
+    <string name="lastsale">Last Sale:</string>
+    <string name="lastharvest">Last Harvest:</string>
+    <string name="lastsaletext">Potato 80kg @ 25bdt/kg</string>
+    <string name="lastharvesttext">Potato 500kg Onions 100kg</string>
+    <string name="rahimmia">Rahim Mia Khondokor</string>
+    <string name="deliverydestination">Delivering to Shwapno</string>
 </resources>

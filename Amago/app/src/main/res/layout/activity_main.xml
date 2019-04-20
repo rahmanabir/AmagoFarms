@@ -61,42 +61,43 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="8dp"
-                        android:text="TextView"
-                        android:textAlignment="textEnd"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/rahimmia"
+                        android:textAlignment="center"
                         android:textSize="30sp"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@+id/imageView2"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_lastsale"
-                        tools:text="Mr. Rahim Mia Khondokor" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView_welcome" />
 
                     <TextView
-                        android:id="@+id/textView_lastsale"
+                        android:id="@+id/textView_welcome"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
-                        android:text="TextView"
-                        android:textAlignment="textEnd"
+                        android:text="@string/hello"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
                         android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageView2"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Welcome!" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/imageView2"
-                        android:layout_width="99dp"
-                        android:layout_height="106dp"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/logo" />
+                        app:srcCompat="@drawable/rahimia" />
                 </android.support.constraint.ConstraintLayout>
 
             </android.support.v7.widget.CardView>
@@ -121,13 +122,12 @@
                         android:id="@+id/textView_lastsale"
                         android:layout_width="114dp"
                         android:layout_height="0dp"
-                        android:text="TextView"
+                        android:text="@string/lastsale"
                         android:textAlignment="viewStart"
                         android:textSize="30sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Last Sale:" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView_lastsaleitem"
@@ -135,15 +135,14 @@
                         android:layout_height="0dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
-                        android:text="TextView"
+                        android:text="@string/lastsaletext"
                         android:textAlignment="textEnd"
                         android:textSize="30sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView_lastsale"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        tools:text="Potato 80kg @ 25bdt/kg" />
+                        app:layout_constraintVertical_bias="0.0" />
 
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>
@@ -188,6 +187,7 @@
                         android:layout_marginBottom="16dp"
                         android:background="@drawable/rounded_button_green"
                         android:text="@string/newharvest"
+                        android:onClick="GotoHarvest"
                         android:textSize="25dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -200,12 +200,11 @@
                         android:layout_height="0dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="TextView"
+                        android:text="@string/lastharvest"
                         android:textAlignment="viewStart"
                         android:textSize="30sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Currrent Harvest:" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView_currharvitem"
@@ -214,14 +213,13 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:text="TextView"
+                        android:text="@string/lastharvesttext"
                         android:textAlignment="textEnd"
                         android:textSize="30sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView_currharv"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView_currharv"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Potato 500kg Onions 100kg" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>
@@ -232,12 +230,38 @@
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                app:cardCornerRadius="@dimen/fab_margin" >
+                android:layout_height="109dp"
+                app:cardCornerRadius="@dimen/fab_margin">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="127dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/im4" />
+
+                    <TextView
+                        android:id="@+id/textView_currharvitem2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/deliverydestination"
+                        android:textAlignment="center"
+                        android:textSize="30sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView3"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>
     </ScrollView>

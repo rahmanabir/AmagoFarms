@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sks.amago.LangHelper.LocaleHelper;
+import com.sks.amago.Helper.LocaleHelper;
 
 import io.paperdb.Paper;
 
@@ -31,6 +31,7 @@ public class Login extends AppCompatActivity {
     Button buttonSignin;
 
     String userpin, userphone;
+    SharedPreferences sharedPrefs;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -42,7 +43,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        SharedPreferences sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
+        sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
         userphone = sharedPrefs.getString("amagoPhone", "01711499499");
         userpin = sharedPrefs.getString("amagoPIN", "0499");
 
@@ -56,11 +57,11 @@ public class Login extends AppCompatActivity {
         buttonSignin = findViewById(R.id.button_signup);
 
         //Language switching
-        Paper.init(this);
-        String language = Paper.book().read("language");
-        if(language == null)
-            Paper.book().write("language", "en");
-        updateView((String)Paper.book().read("language"));
+//        Paper.init(this);
+//        String language = Paper.book().read("language");
+//        if(language == null)
+//            Paper.book().write("language", "bn");
+//        updateView((String)Paper.book().read("language"));
     }
 
     private void updateView(String language) {
@@ -93,8 +94,10 @@ public class Login extends AppCompatActivity {
     }
 
     public void GotoMain(View view) {
-        Log.i("Login creds",userphone + " " + userpin);
-        Log.i("Login creds",editTextPhone.getText().toString() + " " + editTextPIN.getText().toString());
+        userphone = sharedPrefs.getString("amagoPhone", "01711499499");
+        userpin = sharedPrefs.getString("amagoPIN", "0499");
+        Log.i("LoginCreds",userphone + " " + userpin);
+        Log.i("LoginCreds",editTextPhone.getText().toString() + " " + editTextPIN.getText().toString());
         if (userphone.equals(editTextPhone.getText().toString()) && userpin.equals(editTextPIN.getText().toString()))
             startActivity(new Intent(Login.this, MainActivity.class));
         else MakeToast(getString(R.string.crednotmatch));
