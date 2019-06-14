@@ -53,9 +53,12 @@
     <string name="alright">"ঠিকাছে "</string>
     <string name="whatlang">কোন ভাষা?</string>
     <string name="lastsale">পূর্ববর্তী বিক্রয়:</string>
-    <string name="lastharvest">পূর্ববর্তী ফসল:</string>
+    <string name="lastharvest">পূর্ববর্তী ফসল</string>
     <string name="lastsaletext">আলু ৮০kg @ ২৫৳/kg</string>
     <string name="lastharvesttext">আলু ৫০০kg পেঁয়াজ ১০০kg</string>
-    <string name="rahimmia">রহিম মিয়া খন্দকার</string>
+    <string name="rahimmia">রহিম খন্দকার</string>
     <string name="deliverydestination">স্বপ্ন তে ডেলিভার করা হচ্ছে</string>
+    <string name="pickharvest">আপনি কি ফসল চাষ করলেন?</string>
+    <string name="muchharvest">আপনার কতটুক ফসল হলো?</string>
+    <string name="cancel">ভাই বাদ দেন</string>
 </resources>

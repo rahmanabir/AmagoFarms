@@ -47,6 +47,10 @@ public class Login extends AppCompatActivity {
         userphone = sharedPrefs.getString("amagoPhone", "01711499499");
         userpin = sharedPrefs.getString("amagoPIN", "0499");
 
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean("firsttime?", true);
+        editor.apply();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

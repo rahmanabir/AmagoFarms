@@ -14,6 +14,8 @@
     <string name="crednotmatch">Login Details Incorrect. Please Check and Retry</string>
     <string name="sell">Sell</string>
     <string name="newharvest">New Harvest</string>
+    <string name="pickharvest">What did you just harvest?</string>
+    <string name="muchharvest">How much did you harvest?</string>
 
     <string-array name="Produce">
         <item>Potato</item>
@@ -52,9 +54,10 @@
     <string name="alright">OK</string>
     <string name="whatlang">Pick Language</string>
     <string name="lastsale">Last Sale:</string>
-    <string name="lastharvest">Last Harvest:</string>
+    <string name="lastharvest">Prev Harvest</string>
     <string name="lastsaletext">Potato 80kg @ 25bdt/kg</string>
     <string name="lastharvesttext">Potato 500kg Onions 100kg</string>
-    <string name="rahimmia">Rahim Mia Khondokor</string>
+    <string name="rahimmia">Rahim Khondokor</string>
     <string name="deliverydestination">Delivering to Shwapno</string>
+    <string name="cancel">Cancel</string>
 </resources>

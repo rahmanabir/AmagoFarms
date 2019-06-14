@@ -2,6 +2,7 @@ package com.sks.amago;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class LanguageSelect extends AppCompatActivity {
     private RadioButton radioLangButton;
     private Button btnOK;
     private TextView textLang;
+    boolean firsttime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,10 @@ public class LanguageSelect extends AppCompatActivity {
         radioLangGroup = findViewById(R.id.radiogroupLang);
         btnOK = findViewById(R.id.button_langok);
         textLang = findViewById(R.id.textView2);
+
+        SharedPreferences sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
+        firsttime = sharedPrefs.getBoolean("firsttime?", false);
+        if(!firsttime) startActivity(new Intent(LanguageSelect.this, Login.class));
 
 //        Paper.init(this);
 //        String language = Paper.book().read("language");
@@ -63,7 +69,8 @@ public class LanguageSelect extends AppCompatActivity {
             config.locale = locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }
-        startActivity(new Intent(LanguageSelect.this, IntroSlider.class));
+        if(firsttime) startActivity(new Intent(LanguageSelect.this, IntroSlider.class));
+        else startActivity(new Intent(LanguageSelect.this, Login.class));
     }
 
     private void updateView(String language) {
