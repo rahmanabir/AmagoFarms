@@ -1,0 +1,21 @@
+{
+  "name": "amago",
+  "version": "1.0.0",
+  "description": "amago_server",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server",
+    "dev": "nodemon server"
+  },
+  "author": "amago_abir",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "nodemon": "^1.19.1",
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.8.12",
+    "uuid": "^3.3.2"
+  }
+}
