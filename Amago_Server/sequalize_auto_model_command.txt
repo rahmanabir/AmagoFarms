@@ -1,0 +1,1 @@
+sequelize-auto -o "./model_auto/" -d d62n9ee4aotom4 -h ec2-54-228-252-67.eu-west-1.compute.amazonaws.com -u uleqnkzktovcaj -p 5432 -x 31d9bc2ded7f2ebe434feaad96e3e3b12e2e00623a5c5e6a85fdb8cdd6c35c69 -e postgres -c "./config/config.json"
