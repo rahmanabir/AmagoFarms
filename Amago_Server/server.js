@@ -22,14 +22,14 @@ db.authenticate()
 
 //Built in express body parsers won't work if placed below API routes
 //Body Parser Middleware
-server.use(express.json()); 
-server.use(express.urlencoded({extended: false}));
+// server.use(express.json()); 
+// server.use(express.urlencoded({extended: false}));
 
-//User API routes
-server.use('/api/user', require('./routes/api/user'));
+// //User API routes
+// server.use('/api/user', require('./routes/api/user'));
 
-//Set static folder  
-server.use(express.static(path.join(__dirname, 'public'))); 
+// //Set static folder  
+// server.use(express.static(path.join(__dirname, 'public'))); 
 
 
 const PORT = process.env.PORT || 5000; // Place this in config file
