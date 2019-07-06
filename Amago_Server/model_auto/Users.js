@@ -26,6 +26,10 @@ module.exports = function(sequelize, DataTypes) {
 		updatedAt: {
 			type: DataTypes.DATEONLY,
 			allowNull: true
+		},
+		phone: {
+			type: DataTypes.INTEGER,
+			allowNull: true
 		}
 	}, {
 		tableName: 'Users',
