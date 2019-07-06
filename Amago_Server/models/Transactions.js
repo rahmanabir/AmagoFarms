@@ -1,4 +1,6 @@
 /* jshint indent: 1 */
+// const Sequelize = require('sequelize');
+// const db = require('../config/database');
 
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('Transactions', {
