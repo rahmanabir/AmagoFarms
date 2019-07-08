@@ -4,6 +4,10 @@ const server = express();
 //Routes
 const users = require('./routes/api/users');
 
+//Logs server changes for debug
+const logger = require('./middleware/logger');
+server.use(logger);
+
 //Body Parser Middleware
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
@@ -14,7 +18,6 @@ const db = require('./config/database');
 // DB Connection
 /*
 ! Connected to amagoProduction DB server
-TODO Fix local postgresql connection 
 */
 db.authenticate()
   .then(() => console.log('Database connected...'))

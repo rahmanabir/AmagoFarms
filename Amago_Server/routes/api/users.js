@@ -1,74 +1,67 @@
 const express = require('express');
 const uuid = require('uuid');
+const moment = require('moment');
 const router = express.Router();
-//const Sequelize = require('sequelize');
 
+//User Model Import
 const db = require('../../config/database');
-//const Users = require('../../models/Users');
-const Users = db.import('../../models/Users');
-//const users = require('../../Users'); // TODO Change to user model
+const Users = db.import('../../models/Users_updated');
 
-//  ! GET all users
-router.get('/all', (req, res) => {
-  res.json(Users);
-});
+//GET all users
+router.get(
+  '/all',
+  (req, res) => Users.findAll().then(result => res.json(result)) // ! Can't handle large data load, needs to be fixed
+);
 
-// ! GET single user
-router.get('/:id', (req, res) => {
-  const found = Users.some(
-    member => member.userID === parseInt(req.params.userID)
-  );
+//GET single user
+router.get('/:id', (req, res) =>
+  Users.findAll({
+    where: {
+      userID: req.params.id
+    }
+  })
+    .then(resultID => res.json(resultID))
+    .catch(err => console.log(err))
+);
 
-  if (found) {
-    res.json(
-      Users.filter(member => member.userID === parseInt(req.params.userID))
-    );
-  } else {
-    res
-      .status(400)
-      .json({ msg: `No member with the id of ${req.params.userID}` });
-  }
-});
-
-// ! Register New Member || Create New User
+//Register New Member || Create New User
 router.post('/register', (req, res) => {
   const newMember = {
     //userID: uuid.v4(),
-    userID: '5',
+    //userID: '7',
     username: req.body.username,
     password: req.body.password,
-    createdAt: 'Fri Mar 22 2013',
-    updatedAt: 'Fri Mar 23 2013',
+    phone: req.body.phone,
+    createdAt: moment().format(),
+    updatedAt: moment().format(),
     //email: req.body.email,
-    userType: '1'
+    userType: '1' // ! userType one set to 1 for farmers
   };
+  /*
+  ! Need to check if the user already exists in DB 
+  ! and handle accordingly 
+*/
 
-  if (!newMember.username) {
-    return res
-      .status(400)
-      .json({ msg: 'Please include a username and userType' });
-  } else {
-    let {
-      userID,
-      username,
-      password,
-      createdAt,
-      updatedAt,
-      userType
-    } = newMember;
-    // !Insert into User Table
-    Users.create({
-      userID,
-      username,
-      password,
-      createdAt,
-      updatedAt,
-      userType
-    })
-      .then(user => console.log('User inserted into table'))
-      .catch(err => console.log(err));
-    //db.push(newMember);
-    //res.json(Users)
-  }
+  let {
+    //userID,
+    username,
+    password,
+    phone,
+    createdAt,
+    updatedAt,
+    userType
+  } = newMember;
+  // !Insert into User Table
+  Users.create({
+    //userID,
+    username,
+    password,
+    phone,
+    createdAt,
+    updatedAt,
+    userType
+  })
+    .then(res.status(200).json({ msg: 'User successfully registered' }))
+    .catch(err => console.log(err));
 });
 module.exports = router;
