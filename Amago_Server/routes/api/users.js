@@ -2,6 +2,7 @@ const express = require('express');
 const uuid = require('uuid');
 const moment = require('moment');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 
 //User Model Import
 const db = require('../../config/database');
@@ -25,6 +26,7 @@ router.get('/:id', (req, res) =>
 );
 
 //Register New Member || Create New User
+// ! Need to add Validator
 router.post('/register', (req, res) => {
   const newMember = {
     //userID: uuid.v4(),
@@ -37,31 +39,38 @@ router.post('/register', (req, res) => {
     //email: req.body.email,
     userType: '1' // ! userType one set to 1 for farmers
   };
+  // password hashing & saving new user
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newMember.password, salt, (err, hash) => {
+      if (err) console.log(err);
+      newMember.password = hash;
+      console.log(newMember.password);
+      let {
+        //userID,
+        username,
+        password,
+        phone,
+        createdAt,
+        updatedAt,
+        userType
+      } = newMember;
+      // !Insert into User Table
+      Users.create({
+        //userID,
+        username,
+        password,
+        phone,
+        createdAt,
+        updatedAt,
+        userType
+      })
+        .then(res.status(200).json({ msg: 'User successfully registered' }))
+        .catch(err => console.log(err));
+    });
+  });
   /*
   ! Need to check if the user already exists in DB 
   ! and handle accordingly 
 */
-
-  let {
-    //userID,
-    username,
-    password,
-    phone,
-    createdAt,
-    updatedAt,
-    userType
-  } = newMember;
-  // !Insert into User Table
-  Users.create({
-    //userID,
-    username,
-    password,
-    phone,
-    createdAt,
-    updatedAt,
-    userType
-  })
-    .then(res.status(200).json({ msg: 'User successfully registered' }))
-    .catch(err => console.log(err));
 });
 module.exports = router;
