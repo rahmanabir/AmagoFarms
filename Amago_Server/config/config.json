@@ -1,0 +1,15 @@
+{
+    "dialect": "postgres",
+    "port": 5432,
+    "omitNull": true,
+    "ssl" : true,
+
+    "dialectOptions" : {
+        "ssl": {"require":true }
+      },
+
+    "additional" : {
+        "freezeTableName" : true,
+        "timestamps" : false
+    }
+}

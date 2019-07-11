@@ -1,9 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('Users', {
+	return sequelize.define('Users_updated', {
 		userID: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
 		},
 		password: {
 			type: DataTypes.TEXT,
@@ -30,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		}
 	}, {
-		tableName: 'Users',
+		tableName: 'Users_updated',
 		freezeTableName: true,
 		timestamps: false
 	});

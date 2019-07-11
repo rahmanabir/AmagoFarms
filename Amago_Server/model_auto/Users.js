@@ -1,3 +1,5 @@
+/* jshint indent: 1 */
+
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('Users', {
 		userID: {
@@ -23,10 +25,6 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		updatedAt: {
 			type: DataTypes.DATEONLY,
-			allowNull: true
-		},
-		phone: {
-			type: DataTypes.INTEGER,
 			allowNull: true
 		}
 	}, {

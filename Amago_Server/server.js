@@ -1,37 +1,32 @@
 const express = require('express');
-const path = require('path');
-
-const logger = require('./middleware/logger');
-        
 const server = express();
 
-//Database Connection
-const db = require('./config/database'); 
+//Routes
+const users = require('./routes/api/users');
+const auth = require('./routes/api/auth');
 
-//Initiate Logger middle ware      
-server.use(logger); 
+//Logs server changes for debug
+const logger = require('./middleware/logger');
+server.use(logger);
 
-//DB test 
-db.authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-
-//Built in express body parsers won't work if placed below API routes
 //Body Parser Middleware
-server.use(express.json()); 
-server.use(express.urlencoded({extended: false}));
+server.use(express.json());
+server.use(express.urlencoded({ extended: false }));
 
-//User API routes
-server.use('/api/user', require('./routes/api/user'));
+// DB config
+const db = require('./config/database');
 
-//Set static folder  
-server.use(express.static(path.join(__dirname, 'public'))); 
+// DB Connection
+/*
+! Connected to amagoProduction DB server
+*/
+db.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch(err => console.log('Error: ' + err));
 
+//use routes
+server.use('/api/users', users);
+server.use('/api/auth', auth);
 
-const PORT = process.env.PORT || 5000; // Place this in config file
-
+const PORT = process.env.PORT || 5000; // TODO Place this in config file
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
