@@ -1,4 +1,4 @@
-package com.sks.amago;
+package com.sks.amago.Retrofit;
 
 import android.os.AsyncTask;
 import android.util.Log;

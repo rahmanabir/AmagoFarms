@@ -7,13 +7,20 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface RFCallsInterface {
+public interface CallsInterface {
 
     @FormUrlEncoded
-    @POST("register/")
+    @POST("api/users/register")
     Call<ResponseBody> Register(
-            @Field("fullname") String fullname,
-            @Field("phonenumber") String phonenumber,
-            @Field("pinnumber") String pinnumber
+            @Field("username") String fullname,
+            @Field("password") String pinnumber,
+            @Field("phone") String phonenumber
+    );
+
+    @FormUrlEncoded
+    @POST("api/auth/login")
+    Call<ResponseBody> Login(
+            @Field("phone") String phonenumber,
+            @Field("password") String pinnumber
     );
 }

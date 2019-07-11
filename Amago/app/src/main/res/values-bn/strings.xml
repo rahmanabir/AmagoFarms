@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">স্বাগত!</string>
+    <string name="hello">স্বাগতম!</string>
     <string name="pin_number">"গোপন পিন নম্বর "</string>
     <string name="mobile_phone_num">"মোবাইল ফোন নম্বর "</string>
     <string name="title_activity_login">লগইন</string>
@@ -61,4 +61,8 @@
     <string name="pickharvest">আপনি কি ফসল চাষ করলেন?</string>
     <string name="muchharvest">আপনার কতটুক ফসল হলো?</string>
     <string name="cancel">ভাই বাদ দেন</string>
+    <string name="costharvest">এটা কততে বিক্রয় করবেন?</string>
+    <string name="needphnum">আপনার ১১ ডিজিট ফোন নাম্বার টা দয়া করে দেন</string>
+    <string name="needname">আপনার নাম টা দয়া করে দেন</string>
+    <string name="needpin">আপনার গোপন ৪ ডিজিট পিন নাম্বার টা দয়া করে দেন</string>
 </resources>

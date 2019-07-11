@@ -16,6 +16,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,11 +54,13 @@ public class MainActivity extends AppCompatActivity {
         textName.setText(username);
 
         LoadItems();
-        SaveItems();
+        CreateCards();
+//        SaveItems();
     }
 
 
     private String prod, amnt, price;
+    EditText input, input2;
     public void GotoHarvest(View view) {
         AlertDialog.Builder dialogHarvestItem;
         final AlertDialog.Builder dialogHarvestnum;
@@ -65,15 +68,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         dialogHarvestprice = new AlertDialog.Builder(this);
-        dialogHarvestprice.setTitle(R.string.muchharvest);
-        final EditText input2 = new EditText(this);
+        dialogHarvestprice.setTitle(R.string.costharvest);
+        input2 = new EditText(this);
         input2.setInputType(InputType.TYPE_CLASS_NUMBER);
         input2.setRawInputType(Configuration.KEYBOARD_12KEY);
         dialogHarvestprice.setView(input2);
         dialogHarvestprice.setPositiveButton((R.string.alright), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 price = input2.getText().toString();
-                Toast.makeText(MainActivity.this, "At a price of " + price + "tk", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "At a price of " + price + "tk", Toast.LENGTH_LONG).show();
                 InsertItem(prod, Float.parseFloat(amnt), Float.parseFloat(price));
             }
         });
@@ -85,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         ////////////////////////////////////////////////////////
         dialogHarvestnum = new AlertDialog.Builder(this);
         dialogHarvestnum.setTitle(R.string.muchharvest);
-        final EditText input = new EditText(this);
+        input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         input.setRawInputType(Configuration.KEYBOARD_12KEY);
         dialogHarvestnum.setView(input);
@@ -119,24 +122,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void InsertItem(String n, float w, float p) {
         amagoItems.add(new AmagoItem(n,w,p));
-        SaveItems();
+//        SaveItems();
     }
     public void RemoveItem(View view) {
 //        int position = Integer.parseInt(editTextRemove.getText().toString());
         amagoItems.remove(0);
 //        adapter.notifyItemRemoved(position);
     }
-    public void SaveItems() {
+    public void SaveItems(View view) {
         SharedPreferences sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(amagoItems);
-        Log.i("MainActivity","JSON of Transaction Objects:\n" +json+ "\n");
+        Log.i("MainActivity","\nJSON of Transaction Objects:\n" +json+ "\n");
         editor.putString("kotoitems", json);
         editor.apply();
         MakeToast("List was Saved in Local Storage. Chill");
 
-        CreateCards();
+        finish();
+        startActivity(getIntent());
     }
     public void LoadItems(){
         SharedPreferences sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
@@ -160,22 +164,31 @@ public class MainActivity extends AppCompatActivity {
         mLinearLayout = (LinearLayout) findViewById(R.id.mainLinearLayout);
 
         for (int i=0; i<amagoItems.size(); i++) {
+            Space space = new Space(mContext);
+            LinearLayout.LayoutParams paramsS = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    40
+            );
+            space.setLayoutParams(paramsS);
+            mLinearLayout.addView(space);
+
             CardView card = new CardView(mContext);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
             card.setLayoutParams(params);
-            card.setRadius(9);
+            card.setRadius(16);
             card.setContentPadding(15, 15, 15, 15);
-            card.setCardBackgroundColor(Color.parseColor("#FFC6D6C3"));
+            card.setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
             card.setMaxCardElevation(15);
             card.setCardElevation(9);
             TextView tv = new TextView(mContext);
             tv.setLayoutParams(params);
-            tv.setText(amagoItems.get(i).getItemPrice()+ "kg of "+amagoItems.get(i).getItemName() + " @ "+amagoItems.get(i).getItemPrice());
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
-            tv.setTextColor(Color.RED);
+            String s = amagoItems.get(i).getItemAmount()+ "kg of "+amagoItems.get(i).getItemName() + " @ "+amagoItems.get(i).getItemPrice()+"tk";
+            tv.setText(s);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+            tv.setTextColor(Color.GRAY);
             card.addView(tv);
             mLinearLayout.addView(card);
         }

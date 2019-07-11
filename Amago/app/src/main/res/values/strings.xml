@@ -60,4 +60,8 @@
     <string name="rahimmia">Rahim Khondokor</string>
     <string name="deliverydestination">Delivering to Shwapno</string>
     <string name="cancel">Cancel</string>
+    <string name="costharvest">How much will you sell it at?</string>
+    <string name="needphnum">Please enter 11 digit phone number</string>
+    <string name="needname">Please enter your name</string>
+    <string name="needpin">Please enter your 11 digit secret PIN</string>
 </resources>

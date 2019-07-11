@@ -1,13 +1,21 @@
 package com.sks.amago;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Calendar;
 
 public class AmagoItem {
+    @SerializedName("itemName")
     private String itemName;
+    @SerializedName("dateHarvested")
     private String dateHarvested;
+    @SerializedName("itemPrice")
     private float itemPrice;
+    @SerializedName("itemAmount")
     private float itemAmount;
+    @SerializedName("isForSale")
     private boolean isForSale;
+    @SerializedName("uniqueID")
     private String uniqueID;
 
     public AmagoItem(String n, float w, float p){

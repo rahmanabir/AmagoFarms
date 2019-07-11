@@ -9,6 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sks.amago.Retrofit.RetrofitClient;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class Register extends AppCompatActivity {
 
     EditText editTextFullnamereg;
@@ -28,59 +38,51 @@ public class Register extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         editTextFullnamereg = findViewById(R.id.editText_fullnamereg);
-//        editTextAddressreg = findViewById(R.id.editText_addressreg);
-//        editTextDateofBirthreg = findViewById(R.id.editText_dobreg);
         editTextPhoneNumreg = findViewById(R.id.editText_phonereg);
         editTextPINreg = findViewById(R.id.editText_PINreg);
-//        spinnerGender = findViewById(R.id.spinner_genderreg);
         buttonSignup = findViewById(R.id.button_signupreg);
 
-//        final ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(Register.this,
-//                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Genders));
-//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinnerGender.setAdapter(spinnerAdapter);
-//        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int monthOfYear,
-//                                  int dayOfMonth) {
-//                myCalendar.set(Calendar.YEAR, year);
-//                myCalendar.set(Calendar.MONTH, monthOfYear);
-//                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                updateLabel();
-//            }
-//
-//        };
-//        editTextDateofBirthreg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                new DatePickerDialog(Register.this, date, myCalendar
-//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-//            }
-//        });
     }
 
-
-
-//    private void updateLabel() {
-//        String myFormat = "dd/MM/yy"; //In which you need put here
-//        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
-////        editTextDateofBirthreg.setText(sdf.format(myCalendar.getTime()));
-//    }
-
-
     public void GotoRegisterDone(View view) {
-        if(editTextPhoneNumreg.getText().length()==11 && editTextPINreg.getText().length()>=4){
-            SharedPreferences sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPrefs.edit();
-            editor.putString("amagoPIN", editTextPINreg.getText().toString());
-            editor.putString("amagoPhone", editTextPhoneNumreg.getText().toString());
-            editor.putString("amagoFullname", editTextFullnamereg.getText().toString());
-//            editor.putString("amagoAddress", editTextAddressreg.getText().toString());
-//            editor.putString("amagoDOB", editTextDateofBirthreg.getText().toString());
-            editor.apply();
-            Toast.makeText(this, "Saved!\n"+editTextPhoneNumreg.getText().toString()+" "+editTextPINreg.getText().toString(), Toast.LENGTH_LONG).show();
-            this.finish();
-        }
+        String fullname = editTextFullnamereg.getText().toString().trim(),
+                phonenum = editTextPhoneNumreg.getText().toString().trim(),
+                pinnumber = editTextPINreg.getText().toString().trim();
+
+        if (!fullname.isEmpty()) {
+            if (phonenum.length() == 11) {
+                if (pinnumber.length() >= 4) {
+                    SharedPreferences sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPrefs.edit();
+                    editor.putString("amagoPIN", pinnumber);
+                    editor.putString("amagoPhone", phonenum);
+                    editor.putString("amagoFullname", fullname);
+                    editor.apply();
+                    Toast.makeText(this, "Saved!\n" + phonenum + " "
+                            + pinnumber, Toast.LENGTH_LONG).show();
+
+                    Call<ResponseBody> apicall = RetrofitClient.getRetrofitInstance()
+                            .getAPICalls().Register(fullname, pinnumber, phonenum);
+                    apicall.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            try {
+                                String s = response.body().string();
+                                Toast.makeText(Register.this, s, Toast.LENGTH_LONG).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(Register.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                    this.finish();
+                } else editTextPINreg.setError("! " + R.string.needpin + " !");
+            } else editTextPhoneNumreg.setError("! " + R.string.needphnum + " !");
+        } else editTextFullnamereg.setError("! " + R.string.needname + " !");
     }
 }
