@@ -65,3 +65,73 @@ router.delete('/:id', (req, res) => {
     res.status(400).json({ msg: `No member with the id of ${req.params.id}` });
   }
 });
+
+
+// @route GET api/users/login
+// @description Login User | Returning JWT Token
+// @access Public
+router.post('/login', (req, res) => {
+	const { errors, isValid } = validateLoginInput(req.body);
+
+	// Chek Validation
+	if (!isValid) {
+		return res.status(400).json(errors);
+	}
+
+	const email = req.body.email;
+	const password = req.body.password;
+
+	// Find user by email
+	User.findOne({ email }).then(user => {
+		// Check for user
+		if (!user) {
+			errors.email = 'User not found';
+			return res.status(404).json(errors);
+		}
+
+		// Check Password
+		bcrypt.compare(password, user.password).then(isMatch => {
+			if (isMatch) {
+				// User Matched
+
+				const payload = {
+					id: user.id,
+					name: user.name,
+					role: user.role,
+					avatar: user.avatar
+				}; // Create jwt payload
+
+				//Sign Token
+				jwt.sign(
+					payload,
+					keys.secretOrKey,
+					{ expiresIn: 3600 },
+					(err, token) => {
+						res.json({
+							success: true,
+							token: 'Bearer ' + token
+						});
+					}
+				);
+			} else {
+				errors.password = 'Password incorrect';
+				return res.status(400).json(errors);
+			}
+		});
+	});
+});
+
+// @route GET api/users/current
+// @description Return current user
+// @access Private
+router.get(
+	'/current',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		res.json({
+			id: req.user.id,
+			name: req.user.name,
+			email: req.user.email
+		});
+	}
+);
