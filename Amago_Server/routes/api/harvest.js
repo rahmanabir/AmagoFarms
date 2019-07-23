@@ -14,6 +14,9 @@ router.get(
   (req, res) => Harvest.findAll().then(result => res.json(result)) // ! Can't handle large data load, needs to be fixed
 );
 
+// @route GET api/harvest/getHarvest/:id
+// @description gets users harvest list
+// @access Public
 router.get('/getHarvest/:id', (req, res) =>
   Harvest.findAll({
     where: {
@@ -24,6 +27,9 @@ router.get('/getHarvest/:id', (req, res) =>
     .catch(err => console.log(err))
 );
 
+// @route POST api/harvest/postHarvest
+// @description posts a harvest to db
+// @access Public
 router.post('/postHarvest', (req, res) => {
   const newHarvset = {
     userID: req.body.userID,
