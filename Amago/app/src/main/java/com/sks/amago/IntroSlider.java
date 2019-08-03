@@ -26,14 +26,12 @@ public class IntroSlider extends AppCompatActivity {
         Button okbutton = findViewById(R.id.slidebutton);
         okbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(IntroSlider.this, Login.class));
+                Intent intent = new Intent(IntroSlider.this, Login.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
         });
-
-//        Paper.init(this);
-//        String language = Paper.book().read("language");
-//        if(language == null)
-//            Paper.book().write("language", "bn");
     }
 
     public void GotoLogin(View view) {

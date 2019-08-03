@@ -81,8 +81,8 @@ public class Register extends AppCompatActivity {
                     });
 
                     this.finish();
-                } else editTextPINreg.setError("! " + R.string.needpin + " !");
-            } else editTextPhoneNumreg.setError("! " + R.string.needphnum + " !");
-        } else editTextFullnamereg.setError("! " + R.string.needname + " !");
+                } else editTextPINreg.setError("! " + getString(R.string.needpin) + " !");
+            } else editTextPhoneNumreg.setError("! " + getString(R.string.needphnum) + " !");
+        } else editTextFullnamereg.setError("! " + getString(R.string.needname) + " !");
     }
 }

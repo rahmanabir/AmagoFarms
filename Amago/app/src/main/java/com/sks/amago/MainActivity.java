@@ -5,7 +5,10 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -13,7 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Space;
@@ -38,19 +43,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Paper.init(this);
-//        String language = Paper.book().read("language");
-//        if(language == null)
-//            Paper.book().write("language", "bn");
-//        updateView((String)Paper.book().read("language"));
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         textName = findViewById(R.id.textView_username);
         sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
-        username = sharedPrefs.getString("amagoFullname", "Rahim Khondokor");
-        userID = sharedPrefs.getString("amagoUserID", "1234321");
+        username = sharedPrefs.getString("username", "Rahim Khondokor");
+        userID = sharedPrefs.getString("userid", "99");
         textName.setText(username);
 
         LoadItems();
@@ -174,22 +172,46 @@ public class MainActivity extends AppCompatActivity {
 
             CardView card = new CardView(mContext);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
             card.setLayoutParams(params);
             card.setRadius(16);
             card.setContentPadding(15, 15, 15, 15);
-            card.setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
+            card.setCardBackgroundColor(Color.WHITE);
             card.setMaxCardElevation(15);
             card.setCardElevation(9);
+
+            LinearLayout cardlinear = new LinearLayout(mContext);
+            cardlinear.setLayoutParams(params);
+            cardlinear.setOrientation(LinearLayout.VERTICAL);
+            cardlinear.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.START);
+
             TextView tv = new TextView(mContext);
             tv.setLayoutParams(params);
             String s = amagoItems.get(i).getItemAmount()+ "kg of "+amagoItems.get(i).getItemName() + " @ "+amagoItems.get(i).getItemPrice()+"tk";
             tv.setText(s);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
             tv.setTextColor(Color.GRAY);
-            card.addView(tv);
+            cardlinear.addView(tv);
+
+            Space cardspace = new Space(mContext);
+            LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    15
+            );
+            cardspace.setLayoutParams(params2);
+            cardlinear.addView(cardspace);
+
+            Button btn = new Button(mContext);
+            btn.setText(getString(R.string.sell));
+            btn.setTextColor(Color.WHITE);
+            btn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+            btn.setBackground(getDrawable(R.drawable.rounded_button));
+//            btn.setBackgroundColor(Color.GREEN);
+            cardlinear.addView(btn);
+
+            card.addView(cardlinear);
             mLinearLayout.addView(card);
         }
     }
