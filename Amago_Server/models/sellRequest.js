@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       wholesellerID: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
       },
       userID: {
         type: DataTypes.INTEGER,
