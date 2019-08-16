@@ -35,14 +35,6 @@ module.exports = function(sequelize, DataTypes) {
 		createdAt: {
 			type: DataTypes.DATEONLY,
 			allowNull: true
-		},
-		wholesellerID: {
-			type: DataTypes.INTEGER,
-			allowNull: false
-		},
-		userID: {
-			type: DataTypes.INTEGER,
-			allowNull: false
 		}
 	}, {
 		tableName: 'sellRequest',

@@ -1,38 +1,31 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('Users', {
-		userID: {
+	return sequelize.define('RetailStores', {
+		storeID: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			primaryKey: true
+			primaryKey: true,
+			autoIncrement: true
 		},
-		password: {
-			type: DataTypes.TEXT,
+		address: {
+			type: "ARRAY",
+			allowNull: false
+		},
+		userID: {
+			type: DataTypes.INTEGER,
 			allowNull: false
 		},
 		createdAt: {
 			type: DataTypes.DATEONLY,
-			allowNull: false
-		},
-		username: {
-			type: DataTypes.TEXT,
-			allowNull: false
-		},
-		userType: {
-			type: DataTypes.INTEGER,
-			allowNull: false
+			allowNull: true
 		},
 		updatedAt: {
 			type: DataTypes.DATEONLY,
 			allowNull: true
-		},
-		phone: {
-			type: DataTypes.INTEGER,
-			allowNull: true
 		}
 	}, {
-		tableName: 'Users',
+		tableName: 'RetailStores',
 		freezeTableName: true,
 		timestamps: false
 	});

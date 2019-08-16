@@ -1,51 +1,39 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('sellRequest', {
-		reqid: {
+	return sequelize.define('Users_updated', {
+		userID: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true
 		},
-		reqDate: {
+		password: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		},
+		createdAt: {
 			type: DataTypes.DATEONLY,
 			allowNull: false
 		},
-		itemType: {
-			type: DataTypes.INTEGER,
+		username: {
+			type: DataTypes.TEXT,
 			allowNull: false
 		},
-		amount: {
+		userType: {
 			type: DataTypes.INTEGER,
-			allowNull: false
-		},
-		price: {
-			type: DataTypes.INTEGER,
-			allowNull: false
-		},
-		reqStatus: {
-			type: "ARRAY",
 			allowNull: false
 		},
 		updatedAt: {
 			type: DataTypes.DATEONLY,
 			allowNull: true
 		},
-		createdAt: {
-			type: DataTypes.DATEONLY,
+		phone: {
+			type: DataTypes.INTEGER,
 			allowNull: true
-		},
-		wholesellerID: {
-			type: DataTypes.INTEGER,
-			allowNull: false
-		},
-		userID: {
-			type: DataTypes.INTEGER,
-			allowNull: false
 		}
 	}, {
-		tableName: 'sellRequest',
+		tableName: 'Users_updated',
 		freezeTableName: true,
 		timestamps: false
 	});

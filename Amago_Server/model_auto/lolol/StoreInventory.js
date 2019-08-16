@@ -1,16 +1,12 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('sellRequest', {
-		reqid: {
+	return sequelize.define('StoreInventory', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true
-		},
-		reqDate: {
-			type: DataTypes.DATEONLY,
-			allowNull: false
 		},
 		itemType: {
 			type: DataTypes.INTEGER,
@@ -20,32 +16,20 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
-		price: {
+		StoreID: {
 			type: DataTypes.INTEGER,
 			allowNull: false
-		},
-		reqStatus: {
-			type: "ARRAY",
-			allowNull: false
-		},
-		updatedAt: {
-			type: DataTypes.DATEONLY,
-			allowNull: true
 		},
 		createdAt: {
 			type: DataTypes.DATEONLY,
 			allowNull: true
 		},
-		wholesellerID: {
-			type: DataTypes.INTEGER,
-			allowNull: false
-		},
-		userID: {
-			type: DataTypes.INTEGER,
-			allowNull: false
+		updatedAt: {
+			type: DataTypes.DATEONLY,
+			allowNull: true
 		}
 	}, {
-		tableName: 'sellRequest',
+		tableName: 'StoreInventory',
 		freezeTableName: true,
 		timestamps: false
 	});
