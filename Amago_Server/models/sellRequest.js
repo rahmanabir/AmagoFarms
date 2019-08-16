@@ -38,6 +38,10 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.DATEONLY,
         allowNull: true
       },
+      wholesellerID: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
       userID: {
         type: DataTypes.INTEGER,
         allowNull: false
