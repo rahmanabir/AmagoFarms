@@ -35,10 +35,6 @@ public class LanguageSelect extends AppCompatActivity {
         btnOK = findViewById(R.id.button_langok);
         textLang = findViewById(R.id.textView2);
 
-        SharedPreferences sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
-        firsttime = sharedPrefs.getBoolean("firsttime?", false);
-        if(!firsttime) startActivity(new Intent(LanguageSelect.this, Login.class));
-
 //        Paper.init(this);
 //        String language = Paper.book().read("language");
 //        if(language == null)
@@ -48,9 +44,14 @@ public class LanguageSelect extends AppCompatActivity {
 
     public void LanguagePicked(View view) {
         int selectedId = radioLangGroup.getCheckedRadioButtonId();
-        // find the radiobutton by returned id
         radioLangButton = (RadioButton) findViewById(selectedId);
         String lang = radioLangButton.getText().toString();
+
+        SharedPreferences sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean("firsttime", false);
+        editor.apply();
+
         Toast.makeText(this,
                 lang+" Selected", Toast.LENGTH_SHORT).show();
         if (lang.equalsIgnoreCase(" English")) {
@@ -69,8 +70,7 @@ public class LanguageSelect extends AppCompatActivity {
             config.locale = locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }
-        if(firsttime) startActivity(new Intent(LanguageSelect.this, IntroSlider.class));
-        else startActivity(new Intent(LanguageSelect.this, Login.class));
+        startActivity(new Intent(LanguageSelect.this, IntroSlider.class));
     }
 
     private void updateView(String language) {

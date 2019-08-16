@@ -11,22 +11,19 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="156dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_button_green"
         android:onClick="LanguagePicked"
         android:text="@string/alright"
         android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radiogroupLang"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintTop_toBottomOf="@+id/radiogroupLang" />
 
     <ImageView
         android:id="@+id/imageViewLangLogo"
-        android:layout_width="207dp"
-        android:layout_height="210dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"

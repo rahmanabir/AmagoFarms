@@ -17,8 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sks.amago.Helper.LocaleHelper;
+import com.sks.amago.Retrofit.RetrofitClient;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 import io.paperdb.Paper;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
 
@@ -30,8 +40,13 @@ public class Login extends AppCompatActivity {
     Button buttonLogin;
     Button buttonSignin;
 
-    String userpin, userphone;
+    String userpin, userphone, utoken, userid, username;
+    Boolean firsttime;
     SharedPreferences sharedPrefs;
+
+    String tokencheck = " ";
+    int tokenresponsecode = 0;
+    String tokencheckresp = " ";
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -44,75 +59,133 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
+        firsttime = sharedPrefs.getBoolean("firsttime", true);
+
+        if(firsttime){
+            Intent intent = new Intent(Login.this, LanguageSelect.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
+
         userphone = sharedPrefs.getString("amagoPhone", "01711499499");
         userpin = sharedPrefs.getString("amagoPIN", "0499");
+        utoken = sharedPrefs.getString("utoken", "tokennotsetpleaselogin");
+        userid = sharedPrefs.getString("utoken", "tokennotsetpleaselogin");
+        username = sharedPrefs.getString("utoken", "tokennotsetpleaselogin");
 
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putBoolean("firsttime?", true);
-        editor.apply();
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        CheckCurrentToken(utoken);
 
         amagotext = findViewById(R.id.textView);
         editTextPhone = findViewById(R.id.editText_phone);
         editTextPIN = findViewById(R.id.editText_PIN);
         buttonLogin = findViewById(R.id.button_login);
         buttonSignin = findViewById(R.id.button_signup);
-
-        //Language switching
-//        Paper.init(this);
-//        String language = Paper.book().read("language");
-//        if(language == null)
-//            Paper.book().write("language", "bn");
-//        updateView((String)Paper.book().read("language"));
     }
-
-    private void updateView(String language) {
-        Context context = LocaleHelper.setLocale(this, language);
-        Resources resources = context.getResources();
-        editTextPIN.setHint(resources.getString(R.string.pin_number));
-        editTextPhone.setHint(resources.getString(R.string.mobile_phone_num));
-        amagotext.setText(resources.getString(R.string.app_name));
-        buttonLogin.setText(resources.getString(R.string.title_activity_login));
-        buttonSignin.setText(resources.getString(R.string.signup));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.lang_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_setlang_en){
-            Paper.book().write("language", "en");
-            updateView((String)Paper.book().read("language"));
-        }
-        else if(item.getItemId() == R.id.action_setlang_bn){
-            Paper.book().write("language", "bn");
-            updateView((String)Paper.book().read("language"));
-        }
-        return true;
-    }
-
     public void GotoMain(View view) {
-        userphone = sharedPrefs.getString("amagoPhone", "01711499499");
-        userpin = sharedPrefs.getString("amagoPIN", "0499");
-        Log.i("LoginCreds",userphone + " " + userpin);
-        Log.i("LoginCreds",editTextPhone.getText().toString() + " " + editTextPIN.getText().toString());
-        if (userphone.equals(editTextPhone.getText().toString()) && userpin.equals(editTextPIN.getText().toString()))
-            startActivity(new Intent(Login.this, MainActivity.class));
-        else MakeToast(getString(R.string.crednotmatch));
+
+//        userphone = sharedPrefs.getString("amagoPhone", "01711499499");
+//        userpin = sharedPrefs.getString("amagoPIN", "0499");
+
+        Log.i("CheatLoginCreds",userphone + " " + userpin);
+        Log.i("CheatLoginCreds",editTextPhone.getText().toString() + " " + editTextPIN.getText().toString());
+
+
+        String getphone = editTextPhone.getText().toString();
+        String getpin = editTextPIN.getText().toString();
+
+        Call<ResponseBody> apicall = RetrofitClient.getRetrofitInstance()
+                .getAPICalls().Login(getphone, getpin);
+        apicall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    tokencheck = response.body().string();
+                    tokenresponsecode = response.code();
+                    Toast.makeText(Login.this, tokencheck + " - " + tokenresponsecode, Toast.LENGTH_LONG).show();
+                    Log.i("LOGIN GET TOKEN",tokencheck + " - " + tokenresponsecode);
+
+                    JSONObject tokenrespjson = new JSONObject(tokencheck);
+                    String tokencheck = tokenrespjson.getString("token");
+                    Log.i("JSONOBJECT TOKEN","" + tokencheck);
+
+                    SharedPreferences sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPrefs.edit();
+                    editor.putString("utoken", tokencheck);
+                    editor.apply();
+
+                    Toast.makeText(Login.this, "Token Saved to Local: "+tokencheck, Toast.LENGTH_LONG).show();
+                    Log.i("LOGIN SAVE TOKEN","Token Saved to Local: "+tokencheck);
+
+                    CheckCurrentToken(tokencheck);
+
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(Login.this, t.getMessage() +" "+ getString(R.string.crednotmatch), Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    private void CheckCurrentToken(String utoken){
+        tokencheck = utoken;
+        Call<ResponseBody> apicall2 = RetrofitClient.getRetrofitInstance()
+                .getAPICalls().CheckToken(tokencheck);
+        apicall2.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    tokenresponsecode = response.code();
+                    if(tokenresponsecode == 200){
+                        tokencheckresp = response.body().string();
+
+                        JSONObject tokenlogindeets = new JSONObject(tokencheckresp);
+                        tokenlogindeets = tokenlogindeets.getJSONObject("authData");
+                        userid = tokenlogindeets.getString("id");
+                        username = tokenlogindeets.getString("username");
+
+                        Toast.makeText(Login.this, "Ok: "+tokencheckresp +" - "+tokenresponsecode
+                                + "/n"+userid+" - "+username, Toast.LENGTH_LONG).show();
+                        Log.i("RESPONSE TOKEN OK",""+tokencheckresp+" - "+tokenresponsecode+ "\n"+userid+" - "+username);
+
+                        SharedPreferences sharedPrefs = getSharedPreferences("com.sks.amago.userprefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPrefs.edit();
+                        editor.putString("userid", userid);
+                        editor.putString("username", username);
+                        editor.apply();
+
+
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                    else {
+                        Toast.makeText(Login.this, "Fail: "+tokenresponsecode+" "+getString(R.string.crednotmatch), Toast.LENGTH_LONG).show();
+                        Log.i("RESPONSE TOKEN FAIL",tokencheck+" "+tokenresponsecode);
+                    }
+                }
+                catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void GotoRegister(View view) {
         startActivity(new Intent(Login.this, Register.class));
-    }
-
-    void MakeToast(String msg){
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
 }
