@@ -10,8 +10,9 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SB Admin - Login</title>
-
+    <title>Amago - Login</title>
+    <link rel="icon" type="image/ico" href="img/amagoLogo.png" />
+    
     <!-- Custom fonts for this template-->
     <link
       href="vendor/fontawesome-free/css/all.min.css"
@@ -24,6 +25,19 @@
   </head>
 
   <body class="bg-dark">
+
+
+  <nav class="navbar navbar-expand navbar-dark bg-navlight static-top">
+
+      <a class="navbar-brand mr-1" href="home"><img src="img/amago.png" position="center" width="70" height="40"></a>
+
+  
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+
+      </ul>
+  
+    </nav>
     <div class="container">
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
@@ -75,7 +89,11 @@
             </div>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="register.html"
+
+            <% if(typeof msg != 'undefined') 
+              { %> <h3><%= msg %></h3> <%} 
+            %>
+            <a class="d-block small mt-3" href="register"
               >Register an Account</a
             >
             <a class="d-block small" href="forgot-password.html"

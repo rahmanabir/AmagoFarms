@@ -20,6 +20,7 @@ const sellReq = require('./routes/api/sellReq');
 //Web app Routes
 const retailUsers = require('./controllers/retailUser');
 const retailAuth = require('./controllers/retailAuth');
+const retailDashboard = require('./controllers/retailDashboard');
 //Logs server changes for debug
 const logger = require('./middleware/logger');
 server.use(logger);
@@ -68,6 +69,7 @@ server.use('/api/sellRequest', sellReq);
 
 server.use('/', retailUsers);
 server.use('/', retailAuth);
+server.use('/', retailDashboard);
 
 const PORT = process.env.PORT || 5000; // TODO Place this in config file
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

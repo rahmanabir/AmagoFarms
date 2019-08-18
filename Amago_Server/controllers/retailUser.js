@@ -53,7 +53,8 @@ router.post('/register', (req, res) => {
         updatedAt,
         userType
       })
-        .then(res.render('login'))
+        .then(res.redirect('/login'))
+        //.then(console.log('new user registered'))
         .catch(err => console.log(err));
     });
   });

@@ -6985,6 +6985,9 @@ button.bg-light:focus {
 }
 
 .bg-dark {
+  background-color: #20c997 !important;
+}
+.bg-navlight{
   background-color: #343a40 !important;
 }
 

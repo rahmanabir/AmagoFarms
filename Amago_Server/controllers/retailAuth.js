@@ -14,9 +14,11 @@ const keys = require('../config/keys');
 //JWT token extractor middleware
 const verifyToken = require('../middleware/jwtMiddleware');
 
-module.exports = router;
-
 router.get('/login', (req, res) => {
+  res.render('login');
+});
+
+router.get('/', (req, res) => {
   res.render('login');
 });
 
@@ -29,16 +31,16 @@ router.post('/login', (req, res) =>
   })
     .then(member => {
       //Check for user
-      if (!member) {
-        return res.render('login', { msg: 'Not a registered user!' });
-      }
+      //if (!member) {
+      //return res.render('login', { msg: 'Not a registered user!' });
+      //}
 
       const password = req.body.inputPassword; //password
       const memberData = member[0]; // member[0] is an array returned after query
       // Check Password
 
       bcrypt.compare(password, memberData.password, (err, isMatch) => {
-        console.log(err + isMatch + password + memberData.password);
+        //console.log(err + isMatch + password + memberData.password);
         if (isMatch) {
           // Passwords match
           //Create JWT payload
@@ -47,11 +49,6 @@ router.post('/login', (req, res) =>
             id: memberData.userID,
             username: memberData.username
           };
-          // !DEBUG
-
-          res.render('index'); // FIX JWT TOKEN HANDLING
-
-          // !DEBUG
           //Sign Token
           jwt.sign(
             payload,
@@ -64,13 +61,18 @@ router.post('/login', (req, res) =>
               res.render('index');
             }
           );
+
+          res.redirect('/index');
         } else {
           // Passwords don't match
           return res.render('login', { msg: 'Wrong password!, Try again!' });
         }
       });
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      return res.render('login', { msg: 'Not a registered user!' });
+      //console.log(err)
+    })
 );
 
 router.post('/current', verifyToken, (req, res) => {
@@ -84,3 +86,5 @@ router.post('/current', verifyToken, (req, res) => {
     }
   });
 });
+
+module.exports = router;

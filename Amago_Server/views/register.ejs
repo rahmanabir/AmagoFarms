@@ -11,6 +11,7 @@
     <meta name="author" content="" />
 
     <title>Amago- Register</title>
+    <link rel="icon" type="image/ico" href="img/amagoLogo.png" />
 
     <!-- Custom fonts for this template-->
     <link
@@ -24,9 +25,17 @@
   </head>
 
   <body class="bg-dark">
+    <nav class="navbar navbar-expand navbar-dark bg-navlight static-top">
+      <a class="navbar-brand mr-1" href="home"
+        ><img src="img/amago.png" position="center" width="70" height="40"
+      /></a>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0"></ul>
+    </nav>
     <div class="container">
       <div class="card card-register mx-auto mt-5">
-        <div class="card-header"><%= name %></div>
+        <div class="card-header">Register for a Retail Account</div>
         <div class="card-body">
           <form id="register" method="POST" action="/register">
             <div class="form-group">
@@ -108,13 +117,14 @@
                 type="submit"
                 class="btn btn-primary btn-block"
                 value="Register"
+                onclick="window.location.href='google.com'"
               >
                 Register
               </button>
             </div>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="login.html">Login Page</a>
+            <a class="d-block small mt-3" href="login">Login Page</a>
             <a class="d-block small" href="forgot-password.html"
               >Forgot Password?</a
             >
