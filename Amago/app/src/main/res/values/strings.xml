@@ -64,4 +64,8 @@
     <string name="needphnum">Please enter 11 digit phone number</string>
     <string name="needname">Please enter your name</string>
     <string name="needpin">Please enter your 11 digit secret PIN</string>
+    <string name="itemwaiting">Item waiting to be sold</string>
+    <string name="buyer">Buyer</string>
+    <string name="fresh">Fresh!</string>
+    <string name="reload">Reload</string>
 </resources>

@@ -11,7 +11,7 @@ public class RetrofitClient {
 
     private Retrofit retrofit;
     private static RetrofitClient retrofitClient;
-    private static final String BASE_URL = "http://192.168.0.118:5000/";
+    private static final String BASE_URL = "http://192.168.1.24:5000/";
 
     private RetrofitClient(){
         retrofit = new retrofit2.Retrofit.Builder()

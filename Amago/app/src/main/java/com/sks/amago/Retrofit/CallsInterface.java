@@ -7,6 +7,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface CallsInterface {
 
@@ -30,6 +31,23 @@ public interface CallsInterface {
             @Header("Authorization") String utoken
     );
 
-//    @GET("api/getHarvest/id")
-//    Call<> GetHarvest()
+    @GET("api/harvest/getHarvest/{id}")
+    Call<ResponseBody> GetHarvest(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("api/harvest/postHarvest")
+    Call<ResponseBody> PostHarvest(
+            @Field("userID") String userid,
+            @Field("itemType") int itemType,
+            @Field("amount") int amount
+    );
+
+    @FormUrlEncoded
+    @POST("api/sellRequest/postSellRequest")
+    Call<ResponseBody> PostHarvest(
+            @Field("userID") String userid,
+            @Field("itemType") int itemType,
+            @Field("amount") int amount,
+            @Field("price") int price
+    );
 }

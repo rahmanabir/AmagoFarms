@@ -65,4 +65,8 @@
     <string name="needphnum">আপনার ১১ ডিজিট ফোন নাম্বার টা দয়া করে দেন</string>
     <string name="needname">আপনার নাম টা দয়া করে দেন</string>
     <string name="needpin">আপনার গোপন ৪ ডিজিট পিন নাম্বার টা দয়া করে দেন</string>
+    <string name="itemwaiting">" বিক্রয় এর জন্য অপেক্ষা করছে"</string>
+    <string name="buyer">ক্রেতা</string>
+    <string name="fresh">ফ্রেশ!</string>
+    <string name="reload">" নতুন কোরে লোড কর"</string>
 </resources>

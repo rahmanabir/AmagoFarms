@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Calendar;
 
 public class AmagoItem {
+    @SerializedName("uniqueID")
+    private int uniqueID;
     @SerializedName("itemName")
     private String itemName;
     @SerializedName("dateHarvested")
@@ -15,10 +17,13 @@ public class AmagoItem {
     private float itemAmount;
     @SerializedName("isForSale")
     private boolean isForSale;
-    @SerializedName("uniqueID")
-    private String uniqueID;
+    @SerializedName("sellerName")
+    private String sellerName;
+    @SerializedName("itemStatus")
+    private int itemStatus;
 
-    public AmagoItem(String n, float w, float p){
+    public AmagoItem(int id, String n, float w, float p){
+        uniqueID = id;
         itemName = n;
         itemPrice = p;
         itemAmount = w;
@@ -26,17 +31,21 @@ public class AmagoItem {
         dateHarvested = GetDateTaken();
     }
 
+    public int getUniqueID() {return uniqueID;}
     public String getItemName() {return itemName;}
     public float getItemPrice() {return itemPrice;}
     public float getItemAmount() {return itemAmount;}
     public boolean isForSale() {return isForSale;}
-    public String getUniqueID() {return uniqueID;}
+    public String getSellerName() {return sellerName;}
+    public int getItemStatus() {return itemStatus;}
 
+    public void setUniqueID(int uniqueID) {this.uniqueID = uniqueID;}
     public void setItemName(String itemName) {this.itemName = itemName;}
     public void setItemPrice(float itemPrice) {this.itemPrice = itemPrice;}
     public void setItemAmount(float itemAmount) {this.itemAmount = itemAmount;}
     public void setForSale(boolean forSale) {isForSale = forSale;}
-    public void setUniqueID(String uniqueID) {this.uniqueID = uniqueID;}
+    public void getSellerName(String sName) {this.sellerName = sName;}
+    public void getItemStatus(int status) {this.itemStatus = status;}
 
     public static String GetDateTaken(){
         return java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
