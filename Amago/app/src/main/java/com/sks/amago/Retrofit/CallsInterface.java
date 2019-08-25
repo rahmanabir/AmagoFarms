@@ -43,11 +43,10 @@ public interface CallsInterface {
     );
 
     @FormUrlEncoded
-    @POST("api/sellRequest/postSellRequest")
-    Call<ResponseBody> PostHarvest(
-            @Field("userID") String userid,
-            @Field("itemType") int itemType,
-            @Field("amount") int amount,
+    @POST("api/harvest/sellHarvest")
+    Call<ResponseBody> SellHarvest(
+            @Field("id") int itemid,
+            @Field("status") int status,
             @Field("price") int price
     );
 }

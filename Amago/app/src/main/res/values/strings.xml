@@ -68,4 +68,13 @@
     <string name="buyer">Buyer</string>
     <string name="fresh">Fresh!</string>
     <string name="reload">Reload</string>
+    <string name="willcontact">The Retailer will contact you shortly</string>
+    <string name="newharvestok">New Harvest Successful</string>
+    <string name="newsellok">New Sell Successful</string>
+    <string name="delivering">Sending:</string>
+    <string name="deliveredto">Sent to:</string>
+    <string name="emptypleaseharvest">Seems like your harvest is empty, create a new harvest by tapping the green button above!</string>
+    <string name="whatsell">Which harvest will you sell?</string>
+    <string name="harvestupdated">Harvest List Updated</string>
+    <string name="cantbeempty">The field cannot be empty. Please enter the required info</string>
 </resources>

@@ -69,4 +69,13 @@
     <string name="buyer">ক্রেতা</string>
     <string name="fresh">ফ্রেশ!</string>
     <string name="reload">" নতুন কোরে লোড কর"</string>
+    <string name="deliveredto">" পাঠানো হয়েছেঃ"</string>
+    <string name="delivering">পাঠাচ্ছিঃ</string>
+    <string name="newharvestok">নতুন ফসল বানানো হয়েছে</string>
+    <string name="newsellok">" নতুন ফসল বিক্রয় বানানো হয়েছে"</string>
+    <string name="willcontact">ক্রেতা আপনাকে কন্টাক্ট করবে</string>
+    <string name="emptypleaseharvest">" আপনার লিস্ট তো খালি, নতুন ফসল তৈরি করুন উপরের সবুজ বাটনটি টিপে"</string>
+    <string name="whatsell">কোন পণ্য-টি বিক্রি করতে চান?</string>
+    <string name="harvestupdated">ফসল লিস্ট আপডেট করা হয়েছে</string>
+    <string name="cantbeempty">" দয়া কোরে দরকারি তথ্য গুল পুড়ন করুন ।"</string>
 </resources>
