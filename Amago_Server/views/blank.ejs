@@ -9,7 +9,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - 404 Error</title>
+  <title>Amago - Checkout</title>
+  <link rel="icon" type="image/ico" href="img/amagoLogo.png" />
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -24,9 +25,10 @@
 
 <body id="page-top">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+  <nav class="navbar navbar-expand navbar-dark bg-navlight static-top">
 
-    <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand mr-1" href="home"><img src="img/amago.png" position="center" width="70" height="40"></a>
+
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -98,7 +100,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <span>Inventory</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Login Screens:</h6>
@@ -107,19 +109,19 @@
           <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
           <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item active" href="404.html">404 Page</a>
-          <a class="dropdown-item" href="blank.html">Blank Page</a>
+          <a class="dropdown-item" href="404.html">404 Page</a>
+          <a class="dropdown-item active" href="blank.html">Blank Page</a>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+          <span>Reports</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>Transactions</span></a>
       </li>
     </ul>
 
@@ -132,15 +134,15 @@
           <li class="breadcrumb-item">
             <a href="index.html">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">404 Error</li>
+          <li class="breadcrumb-item active">Blank Page</li>
         </ol>
 
         <!-- Page Content -->
-        <h1 class="display-1">404</h1>
-        <p class="lead">Page not found. You can
-          <a href="javascript:history.back()">go back</a>
-          to the previous page, or
-          <a href="index.html">return home</a>.</p>
+        <h1>Checkout</h1>
+        <hr>
+        <p> <% if(typeof msg != 'undefined') 
+          { %> <h3><%= msg %></h3> <%} 
+        %></p>
 
       </div>
       <!-- /.container-fluid -->

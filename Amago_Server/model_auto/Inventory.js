@@ -5,8 +5,7 @@ module.exports = function(sequelize, DataTypes) {
 		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			primaryKey: true,
-			autoIncrement: true
+			primaryKey: true
 		},
 		itemType: {
 			type: DataTypes.INTEGER,
@@ -19,6 +18,22 @@ module.exports = function(sequelize, DataTypes) {
 		amount: {
 			type: DataTypes.INTEGER,
 			allowNull: false
+		},
+		price: {
+			type: DataTypes.INTEGER,
+			allowNull: true
+		},
+		status: {
+			type: DataTypes.INTEGER,
+			allowNull: false
+		},
+		retailID: {
+			type: DataTypes.INTEGER,
+			allowNull: true
+		},
+		retailName: {
+			type: DataTypes.TEXT,
+			allowNull: true
 		},
 		createdAt: {
 			type: DataTypes.DATEONLY,

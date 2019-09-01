@@ -27,6 +27,17 @@ router.get('/getHarvest/:id', (req, res) =>
     .catch(err => console.log(err))
 );
 
+router.post('/sellHarvest', (req, res) => {
+  Harvest.update(
+    { status: req.body.status, price: req.body.price },
+    {
+      where: { id: req.body.id }
+    }
+  )
+    .then(msg => res.json('Sell requested'))
+    .catch(err => console.log(err));
+});
+
 // @route POST api/harvest/postHarvest
 // @description posts a harvest to db
 // @access Public
@@ -35,16 +46,18 @@ router.post('/postHarvest', (req, res) => {
     userID: req.body.userID,
     itemType: req.body.itemType,
     amount: req.body.amount,
+    status: '1',
     createdAt: moment().format(),
     updatedAt: moment().format()
   };
 
-  let { userID, itemType, amount, createdAt, updatedAt } = newHarvset;
+  let { userID, itemType, amount, status, createdAt, updatedAt } = newHarvset;
   // !Insert into Inventory Table
   Harvest.create({
     userID,
     itemType,
     amount,
+    status,
     createdAt,
     updatedAt
   })

@@ -1,5 +1,7 @@
 const express = require('express');
 const server = express();
+//const cookieParser = require('cookie-parser');
+//const session = require('express-session');
 
 //EJS view engine initialization
 server.set('view engine', 'ejs');
@@ -18,12 +20,17 @@ const item = require('./routes/api/item');
 const sellReq = require('./routes/api/sellReq');
 
 //Web app Routes
+const retailUtils = require('./controllers/retailUtils');
 const retailUsers = require('./controllers/retailUser');
 const retailAuth = require('./controllers/retailAuth');
 const retailDashboard = require('./controllers/retailDashboard');
 //Logs server changes for debug
 const logger = require('./middleware/logger');
 server.use(logger);
+
+//Cookie and Sesssion Handling
+//server.use(cookieParser());
+//server.use(session({ secret: 'this is a secret' }));
 
 //Body Parser Middleware
 server.use(express.json());
@@ -67,6 +74,7 @@ server.use('/api/harvest', harvest);
 server.use('/api/item', item);
 server.use('/api/sellRequest', sellReq);
 
+server.use('/', retailUtils);
 server.use('/', retailUsers);
 server.use('/', retailAuth);
 server.use('/', retailDashboard);

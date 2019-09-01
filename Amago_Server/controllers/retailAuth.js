@@ -55,14 +55,23 @@ router.post('/login', (req, res) =>
             keys.secretOrKey,
             { expiresIn: 3060 },
             (err, token) => {
+              var accessToken = 'Bearer ' + token;
               res.json({
-                token: 'Bearer ' + token
+                token: accessToken
               });
-              res.render('index');
+              //sessionStorage.setItem('token', accessToken);
+              //console.log(accessToken);
+              /*res.session.cookie('auth', accessToken, {
+                httpOnly: true,
+                secure: true
+              });
+              res.status(200);
+            */
             }
           );
 
-          res.redirect('/index');
+          res.redirect('/' + memberData.userID);
+          //res.redirect('/index');
         } else {
           // Passwords don't match
           return res.render('login', { msg: 'Wrong password!, Try again!' });
